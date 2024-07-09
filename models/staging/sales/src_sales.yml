@@ -1,0 +1,81 @@
+version: 2
+
+sources:
+
+  - name: sales # name of the source 
+    schema: SALES # this is the schema our raw data lives in
+    database: DSANCHEZ_BRONZE_DB # this is the name of our database
+
+    quoting:
+      database: false
+      schema: false
+      identifier: false
+
+    freshness:
+      warn_after: {count: 24, period: hour}
+      error_after: {count: 48, period: hour}
+
+    tables:
+
+      - name: customers
+        columns:
+          - name: CUSTOMER_ID
+          - name: FIRST_NAME
+          - name: LAST_NAME
+          - name: PHONE
+          - name: EMAIL
+          - name: STREET
+          - name: STREET_NUMBER
+          - name: STREET_NAME
+          - name: CITY
+          - name: STATE
+          - name: ZIP_CODE
+
+      - name: staffs
+        columns:
+          - name: STAFF_ID
+          - name: FIRST_NAME
+          - name: LAST_NAME
+          - name: EMAIL
+          - name: PHONE
+          - name: ACTIVE
+          - name: STORE_ID
+          - name: MANAGER_ID
+          - name: _FIVETRAN_DELETED
+          - name: _FIVETRAN_SYNCED
+
+      - name: stores
+        columns:
+          - name: STORE_NAME
+          - name: PHONE
+          - name: EMAIL
+          - name: STREET
+          - name: CITY
+          - name: STATE
+          - name: ZIP_CODE
+          - name: _FIVETRAN_DELETED
+          - name: _FIVETRAN_SYNCED
+
+      - name: orders
+        columns:
+          - name: ORDER_ID
+          - name: CUSTOMER_ID
+          - name: ORDER_STATUS
+          - name: ORDER_DATE
+          - name: REQUIRED_DATE
+          - name: SHIPPED_DATE
+          - name: STORE_ID
+          - name: STAFF_ID
+          - name: _FIVETRAN_DELETED
+          - name: _FIVETRAN_SYNCED
+
+      - name: order_items
+        columns:
+          - name: ORDER_ID
+          - name: ITEM_ID
+          - name: PRODUCT_ID
+          - name: QUANTITY
+          - name: LIST_PRICE
+          - name: DISCOUNT
+          - name: _FIVETRAN_DELETED
+          - name: _FIVETRAN_SYNCED
