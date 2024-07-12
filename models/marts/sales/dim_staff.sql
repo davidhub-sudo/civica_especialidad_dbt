@@ -1,10 +1,5 @@
-{{
-  config(
-    materialized='view'
-  )
-}}
-
-SELECT 
+with staff as (
+    select
       STAFF_ID
     , FIRST_NAME
     , LAST_NAME
@@ -13,8 +8,7 @@ SELECT
     , ACTIVE
     , STORE_ID
     , MANAGER_ID
-FROM {{ source('sales', 'staffs') }}
-    
+     from {{ ref('stg_sales_sch_staffs')}}
+)
 
-
-
+select * from staff
