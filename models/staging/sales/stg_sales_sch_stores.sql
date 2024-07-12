@@ -4,12 +4,14 @@
   )
 }}
 
-WITH src_sales_stores AS (
-    SELECT * 
-    FROM {{ source('sales', 'stores') }}
-    ),
-
-renamed_casted AS (SELECT * FROM src_sales_stores)
-SELECT * FROM renamed_casted
-
+SELECT 
+        STORE_ID
+    , STORE_NAME
+    , PHONE
+    , EMAIL
+    , STREET
+    , CITY
+    , STATE
+    , ZIP_CODE
+FROM {{ source('sales', 'stores') }}
 
