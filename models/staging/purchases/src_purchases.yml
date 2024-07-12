@@ -1,0 +1,47 @@
+version: 2
+
+sources:
+
+  - name: purchases # name of the source 
+    schema: purchases # this is the schema our raw data lives in
+    database: DSANCHEZ_BRONZE_DB # this is the name of our database
+
+    quoting:
+      database: false
+      schema: false
+      identifier: false
+
+    freshness:
+      warn_after: {count: 24, period: hour}
+      error_after: {count: 48, period: hour}
+
+    tables:
+
+      - name: providers
+        columns:
+          - name: PROVIDER_ID
+          - name: FIRST_NAME
+          - name: LAST_NAME
+          - name: EMAIL
+          - name: PHONE
+          - name: _FIVETRAN_DELETED
+          - name: _FIVETRAN_SYNCED
+
+      - name: purchase
+        columns:
+          - name: PURCHASE_ID
+          - name: PROVIDER_ID
+          - name: PURCHASE_DATE
+          - name: STORE_ID
+          - name: STAFF_ID
+          - name: _FIVETRAN_DELETED
+          - name: _FIVETRAN_SYNCED
+
+      - name: purchase_item
+        columns:
+          - name: PURCHASE_ID
+          - name: ITEM_ID
+          - name: PURCHASE_DATE
+          - name: PRODUCT_ID
+          - name: _FIVETRAN_DELETED
+          - name: _FIVETRAN_SYNCED
