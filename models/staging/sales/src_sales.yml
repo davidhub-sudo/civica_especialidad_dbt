@@ -20,6 +20,7 @@ sources:
       - name: customers
         columns:
           - name: CUSTOMER_ID
+            documentation: ID del comprador
           - name: FIRST_NAME
           - name: LAST_NAME
           - name: PHONE
